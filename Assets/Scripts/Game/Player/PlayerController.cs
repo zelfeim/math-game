@@ -66,10 +66,16 @@ namespace Game.Player
 
         private void GetStunned()
         {
-            score--;
+            ModifyScore(-1);
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void ModifyScore(int modifyBy)
+        {
+            score += modifyBy;
+            Debug.Log($"Current player score: {score}");
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
         {
             Debug.Log($"Collision! {other.gameObject.name}");
             if (other.gameObject.CompareTag("Obstacle"))
@@ -79,7 +85,7 @@ namespace Game.Player
 
             if (other.gameObject.CompareTag("Operation"))
             {
-                score++;
+                ModifyScore(+1);
             }
         }
     }
