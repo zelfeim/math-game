@@ -6,7 +6,6 @@ namespace Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public float speed = 1.0f;
         public float jumpSpeed = 5.0f;
 
         public int score = 0;
@@ -57,11 +56,6 @@ namespace Game.Player
         void OnDuck()
         {
             _isDucking = true;
-        }
-
-        void FixedUpdate()
-        {
-            _rb.linearVelocityY = speed;
         }
 
         private void GetStunned()

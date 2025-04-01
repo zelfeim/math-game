@@ -14,11 +14,6 @@ namespace Game.Camera
         // Update is called once per frame
         void Update()
         {
-            // TODO: make it more resource efficient
-            var camPos = UnityEngine.Camera.main!.transform.position;
-            var playerPos = GameObject.FindGameObjectsWithTag("Player").First().transform.position;
-        
-            UnityEngine.Camera.main.transform.position = new Vector3(camPos.x, playerPos.y, camPos.z);
         }
     }
 }
