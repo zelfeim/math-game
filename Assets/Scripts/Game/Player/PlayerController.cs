@@ -1,4 +1,6 @@
 using System;
+using Game.Operation;
+using Game.Operation.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +10,9 @@ namespace Game.Player
     {
         public float jumpSpeed = 5.0f;
 
-        public int score = 0;
+        public double score = 0.0d;
+        
+        public static event Action<double> OnScoreChange;
         
         private Rigidbody2D _rb;
         private Collider2D _col;
@@ -60,18 +64,17 @@ namespace Game.Player
 
         private void GetStunned()
         {
-            ModifyScore(-1);
         }
 
-        private void ModifyScore(int modifyBy)
+        private void ModifyScore(IOperation operation)
         {
-            score += modifyBy;
+            score = operation.Evaluate(score);
+            OnScoreChange?.Invoke(score);
             Debug.Log($"Current player score: {score}");
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log($"Collision! {other.gameObject.name}");
             if (other.gameObject.CompareTag("Obstacle"))
             {
                 GetStunned(); 
@@ -79,8 +82,9 @@ namespace Game.Player
 
             if (other.gameObject.CompareTag("Operation"))
             {
-                ModifyScore(+1);
+                ModifyScore(other.gameObject.GetComponent<OperationController>().Operation);
             }
         }
+
     }
 }

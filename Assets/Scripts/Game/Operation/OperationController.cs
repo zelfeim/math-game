@@ -1,4 +1,5 @@
 using System;
+using Game.Operation.Interfaces;
 using UnityEngine;
 
 namespace Game.Operation
@@ -9,7 +10,9 @@ namespace Game.Operation
         
         private Rigidbody2D _rb;
         private Collider2D _col;
-    
+        
+        public IOperation Operation;
+        
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
