@@ -1,6 +1,8 @@
 using System;
 using Game.Operation.Interfaces;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Operation
 {
@@ -10,7 +12,10 @@ namespace Game.Operation
         
         private Rigidbody2D _rb;
         private Collider2D _col;
+        private SpriteRenderer _sr;
+        public TextMeshProUGUI text;
         
+        // TODO: Private?
         public IOperation Operation;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,6 +23,7 @@ namespace Game.Operation
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<Collider2D>();
+            text = GetComponent<TextMeshProUGUI>();
         }
 
         // Update is called once per frame

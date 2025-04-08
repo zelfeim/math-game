@@ -1,5 +1,6 @@
 using System;
 using Game.Operation.Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -29,10 +30,29 @@ namespace Game.Operation
 
             // TODO: Better performance?
             var controller = operationObject.GetComponent<OperationController>();
-            // TODO: Method to set it
             
-            // TODO: Randomly set the operation
-            controller.Operation = RandomizeOperation();
+            var operation = RandomizeOperation();
+            var text = string.Empty;
+            switch (operation)
+            {
+                case AdditionOperation additionOperation:
+                    text = $"+{additionOperation.Rhs}"; 
+                    break;
+                case SubtractionOperation subtractionOperation:
+                    text = $"-{subtractionOperation.Rhs}";
+                    break;
+                case MultiplicationOperation multiplicationOperation:
+                    text = $"*{multiplicationOperation.Rhs}";
+                    break;
+                case DivisionOperation divisionOperation:
+                    text = $"/{divisionOperation.Rhs}";
+                    break;
+            }
+            
+            controller.Operation = operation;
+            controller.text.SetText(text);
+
+            // controller.Setup(operation, text);
 
             _timer = 0;
         }
@@ -42,7 +62,7 @@ namespace Game.Operation
             var type = _random.Next(1, 4);
             
             var value = _random.NextDouble() * 10;
-
+            
             return type switch
             {
                 // TODO: Set colors/values inside the operations

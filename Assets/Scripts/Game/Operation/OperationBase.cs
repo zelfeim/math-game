@@ -6,7 +6,7 @@ namespace Game.Operation
 {
     public class OperationBase : IOperation
     {
-        protected readonly double Rhs;
+        public double Rhs { get; }
         
         protected Func<double, double> Function;
 
