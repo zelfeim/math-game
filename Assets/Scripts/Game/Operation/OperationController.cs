@@ -13,7 +13,7 @@ namespace Game.Operation
         private Rigidbody2D _rb;
         private Collider2D _col;
         private SpriteRenderer _sr;
-        public TextMeshProUGUI text;
+        public TextMeshPro text;
         
         // TODO: Private?
         public IOperation Operation;
@@ -23,7 +23,7 @@ namespace Game.Operation
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<Collider2D>();
-            text = GetComponent<TextMeshProUGUI>();
+            text = GetComponent<TextMeshPro>();
         }
 
         // Update is called once per frame

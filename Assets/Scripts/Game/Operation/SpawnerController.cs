@@ -26,32 +26,33 @@ namespace Game.Operation
             
             var lane = _random.Next(-1, 1);
                 
-            var operationObject = Instantiate(operationPrefab, new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
+            var operationObject = Instantiate(operationPrefab, new Vector3(lane * 10.0f, spawnerLocation.position.y, 0), Quaternion.identity);
 
             // TODO: Better performance?
             var controller = operationObject.GetComponent<OperationController>();
             
             var operation = RandomizeOperation();
             var text = string.Empty;
+
+            var rhs = operation.Rhs.ToString("0.##");
             switch (operation)
             {
                 case AdditionOperation additionOperation:
-                    text = $"+{additionOperation.Rhs}"; 
+                    text = $"+{rhs}"; 
                     break;
                 case SubtractionOperation subtractionOperation:
-                    text = $"-{subtractionOperation.Rhs}";
+                    text = $"-{rhs}";
                     break;
                 case MultiplicationOperation multiplicationOperation:
-                    text = $"*{multiplicationOperation.Rhs}";
+                    text = $"*{rhs}";
                     break;
                 case DivisionOperation divisionOperation:
-                    text = $"/{divisionOperation.Rhs}";
+                    text = $"/{rhs}";
                     break;
             }
             
             controller.Operation = operation;
             controller.text.SetText(text);
-
             // controller.Setup(operation, text);
 
             _timer = 0;

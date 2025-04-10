@@ -8,9 +8,9 @@ namespace Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public float jumpSpeed = 5.0f;
+        private const float JumpSpeed = 10.0f;
 
-        public double score = 0.0d;
+        private double _score = 0.0d;
         
         public static event Action<double> OnScoreChange;
         
@@ -41,14 +41,14 @@ namespace Game.Player
         void OnMoveLeft(InputValue value)
         {
             if (_currentLane == Lane.Left) return;
-            _rb.MovePosition(new Vector2(_rb.position.x - jumpSpeed, _rb.position.y));
+            _rb.MovePosition(new Vector2(_rb.position.x - JumpSpeed, _rb.position.y));
             _currentLane--;
         }
 
         void OnMoveRight()
         {
             if (_currentLane == Lane.Right) return;
-            _rb.MovePosition(new Vector2(_rb.position.x + jumpSpeed, _rb.position.y));
+            _rb.MovePosition(new Vector2(_rb.position.x + JumpSpeed, _rb.position.y));
             _currentLane++;
         }
         
@@ -68,9 +68,9 @@ namespace Game.Player
 
         private void ModifyScore(IOperation operation)
         {
-            score = operation.Evaluate(score);
-            OnScoreChange?.Invoke(score);
-            Debug.Log($"Current player score: {score}");
+            _score = operation.Evaluate(_score);
+            OnScoreChange?.Invoke(_score);
+            Debug.Log($"Current player score: {_score}");
         }
 
         private void OnCollisionEnter2D(Collision2D other)
