@@ -8,7 +8,7 @@ namespace Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private const float JumpSpeed = 10.0f;
+        private const float JumpSpeed = 5.0f;
 
         private double _score = 0.0d;
         

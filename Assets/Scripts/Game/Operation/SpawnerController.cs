@@ -26,7 +26,7 @@ namespace Game.Operation
             
             var lane = _random.Next(-1, 1);
                 
-            var operationObject = Instantiate(operationPrefab, new Vector3(lane * 10.0f, spawnerLocation.position.y, 0), Quaternion.identity);
+            var operationObject = Instantiate(operationPrefab, new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
 
             // TODO: Better performance?
             var controller = operationObject.GetComponent<OperationController>();

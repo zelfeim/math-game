@@ -8,7 +8,7 @@ namespace Game.Operation
 {
     public class OperationController : MonoBehaviour
     {
-        public float speed = -2.5f;
+        private float speed = -2.0f;
         
         private Rigidbody2D _rb;
         private Collider2D _col;
