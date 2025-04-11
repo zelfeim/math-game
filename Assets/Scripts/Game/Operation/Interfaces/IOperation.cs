@@ -1,9 +1,8 @@
-using UnityEngine;
-
-namespace Game.Operation
+namespace Game.Operation.Interfaces
 {
     public interface IOperation
     {
-        void Spawn(Vector2 position);
+        double Rhs { get; }
+        public double Evaluate(double rhs);
     }
 }
