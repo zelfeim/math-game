@@ -18,6 +18,8 @@ namespace Game.Operation
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<Collider2D>();
             text = GetComponent<TextMeshPro>();
+
+
         }
         
         void Update()

@@ -1,0 +1,84 @@
+[
+  {
+    "level": 1,
+    "valueRange": [
+      -100,
+      100
+    ],
+    "resultRange": [
+      -200,
+      200
+    ],
+    "operations": [
+      "+",
+      "-"
+    ],
+    "operationComplexity": 2,
+    "obstacleToOperationRatio": 0.25,
+    "elementDensity": "low",
+    "speed": "slow"
+  },
+  {
+    "level": 2,
+    "valueRange": [
+      -100,
+      200
+    ],
+    "resultRange": [
+      -200,
+      400
+    ],
+    "operations": [
+      "+",
+      "-",
+      "*"
+    ],
+    "operationComplexity": 2,
+    "obstacleToOperationRatio": 0.33,
+    "elementDensity": "medium",
+    "speed": "medium"
+  },
+  {
+    "level": 3,
+    "valueRange": [
+      1,
+      500
+    ],
+    "resultRange": [
+      0,
+      1000
+    ],
+    "operations": [
+      "+",
+      "-",
+      "*",
+      "/"
+    ],
+    "operationComplexity": 3,
+    "obstacleToOperationRatio": 0.5,
+    "elementDensity": "high",
+    "speed": "fast"
+  },
+  {
+    "level": 4,
+    "valueRange": [
+      1,
+      1000
+    ],
+    "resultRange": [
+      0,
+      5000
+    ],
+    "operations": [
+      "+",
+      "-",
+      "*",
+      "/",
+      "^"
+    ],
+    "operationComplexity": 4,
+    "obstacleToOperationRatio": 1.0,
+    "elementDensity": "very_high",
+    "speed": "fast"
+  }
+]
