@@ -93,7 +93,6 @@ namespace Game.Player
 
             if (other.gameObject.CompareTag("Operation"))
             {
-                GetStunned();
                 ModifyScore(other.gameObject.GetComponent<OperationController>().Operation);
             }
         }
