@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Game.Misc
 {
+    // TODO: Rename to ScoreTextController?
     public class TextController : MonoBehaviour
     {
         private TextMeshProUGUI _text;
