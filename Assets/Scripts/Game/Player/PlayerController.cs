@@ -10,9 +10,11 @@ namespace Game.Player
     {
         private const float JumpSpeed = 5.0f;
 
+        private int _lives = 3;
         private double _score = 0.0d;
         
         public static event Action<double> OnScoreChange;
+        public static event Action<int> OnLivesChange;
         
         private Rigidbody2D _rb;
         private Collider2D _col;
@@ -31,6 +33,9 @@ namespace Game.Player
             _col = GetComponent<Collider2D>();
 
             _rb.gravityScale = 0;
+            
+            // TODO: Do the same with lives? 
+            OnLivesChange?.Invoke(_lives);
         }
 
         // Update is called once per frame
@@ -64,6 +69,12 @@ namespace Game.Player
 
         private void GetStunned()
         {
+            if (--_lives == 0)
+            {
+                Debug.Log("Game Over");
+            }
+            
+            OnLivesChange?.Invoke(_lives);
         }
 
         private void ModifyScore(IOperation operation)
@@ -82,9 +93,9 @@ namespace Game.Player
 
             if (other.gameObject.CompareTag("Operation"))
             {
+                GetStunned();
                 ModifyScore(other.gameObject.GetComponent<OperationController>().Operation);
             }
         }
-
     }
 }
