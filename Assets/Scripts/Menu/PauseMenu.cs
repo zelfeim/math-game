@@ -15,10 +15,7 @@ public class PauseMenu : MonoBehaviour
         {
             pauseMenuPanel.SetActive(false);
         }
-        else
-        {
-            Debug.LogError("Nie przypisano obiektu Pause Menu Panel w inspektorze!");
-        }
+       
     }
 
     void Update()

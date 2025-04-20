@@ -73,8 +73,13 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .idea/
 .vscode/
 =======
 .idea/
 >>>>>>> Ladeboard
+=======
+.idea/
+.vscode/
+>>>>>>> upstream/main
