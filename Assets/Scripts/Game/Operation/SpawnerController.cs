@@ -1,6 +1,4 @@
-using System;
 using Game.Operation.Interfaces;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -19,6 +17,7 @@ namespace Game.Operation
         private readonly Random _random = new();
         private float _spawnTimer = 0;
         private float _nextSpawnTime;
+        private float _timer;
 
         private void Start()
         {
@@ -88,8 +87,11 @@ namespace Game.Operation
                 case DivisionOperation divisionOperation:
                     text = $"/{rhs}";
                     break;
+                case ComplexOperation complexOperation:
+                    text = complexOperation.BinaryTree.ToString();
+                    break;
             }
-            
+
             controller.Operation = operation;
             controller.text.SetText(text);
             // controller.Setup(operation, text);
@@ -97,10 +99,10 @@ namespace Game.Operation
 
         private IOperation RandomizeOperation()
         {
-            var type = _random.Next(1, 4);
-            
+            var type = _random.Next(5, 5);
+
             var value = _random.NextDouble() * 10;
-            
+
             return type switch
             {
                 // TODO: Set colors/values inside the operations
@@ -108,6 +110,7 @@ namespace Game.Operation
                 2 => new SubtractionOperation(value),
                 3 => new MultiplicationOperation(value),
                 4 => new DivisionOperation(value),
+                5 => new ComplexOperation(),
                 _ => null
             };
         }
