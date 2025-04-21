@@ -22,16 +22,14 @@ namespace Game.Operation.BinaryTree.Operations
 
         public sealed override string ToString()
         {
-            var operationCharacter = _type switch
+            return _type switch
             {
-                OperationType.Addition => '+',
-                OperationType.Subtraction => '-',
-                OperationType.Multiplication => '*',
-                OperationType.Division => '/',
+                OperationType.Addition => $"({LeftNode} + {RightNode})",
+                OperationType.Subtraction => $"({LeftNode} - {RightNode})",
+                OperationType.Multiplication => $@"{LeftNode} × {RightNode}",
+                OperationType.Division => $@"{LeftNode} ÷ {RightNode}",
                 _ => throw new ArgumentOutOfRangeException()
             };
-
-            return $"{LeftNode} {operationCharacter} {RightNode}";
         }
     }
 }
