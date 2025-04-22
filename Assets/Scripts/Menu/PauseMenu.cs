@@ -15,10 +15,7 @@ public class PauseMenu : MonoBehaviour
         {
             pauseMenuPanel.SetActive(false);
         }
-        else
-        {
-            Debug.LogError("Nie przypisano obiektu Pause Menu Panel w inspektorze!");
-        }
+       
     }
 
     void Update()
@@ -65,14 +62,11 @@ public class PauseMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f; // Reset czasu gry przed przejściem do menu głównego
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu"); // Załaduj scenę głównego menu
+        SceneManager.LoadScene(mainMenuSceneName); // Załaduj scenę głównego menu
     }
 
     public void QuitGame()
     {
-
-
         Application.Quit();
-
     }
 }

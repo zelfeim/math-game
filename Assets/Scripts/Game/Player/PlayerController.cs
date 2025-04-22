@@ -12,14 +12,14 @@ namespace Game.Player
 
         private int _lives = 3;
         private double _score = 0.0d;
-        
+
         public static event Action<double> OnScoreChange;
         public static event Action<int> OnLivesChange;
-        
+
         private Rigidbody2D _rb;
         private Collider2D _col;
         private PlayerInput _playerInput;
-        
+
         private bool _isDucking;
         private bool _isJumping;
 
@@ -33,8 +33,8 @@ namespace Game.Player
             _col = GetComponent<Collider2D>();
 
             _rb.gravityScale = 0;
-            
-            // TODO: Do the same with lives? 
+
+            // Inicjalizacja liczby żyć
             OnLivesChange?.Invoke(_lives);
         }
 
@@ -56,10 +56,10 @@ namespace Game.Player
             _rb.MovePosition(new Vector2(_rb.position.x + JumpSpeed, _rb.position.y));
             _currentLane++;
         }
-        
+
         void OnJump()
         {
-            _isJumping = true; 
+            _isJumping = true;
         }
 
         void OnDuck()
@@ -73,7 +73,7 @@ namespace Game.Player
             {
                 Debug.Log("Game Over");
             }
-            
+
             OnLivesChange?.Invoke(_lives);
         }
 
@@ -84,11 +84,16 @@ namespace Game.Player
             Debug.Log($"Current player score: {_score}");
         }
 
+        public double GetCurrentScore()
+        {
+            return _score;
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Obstacle"))
             {
-                GetStunned(); 
+                GetStunned();
             }
 
             if (other.gameObject.CompareTag("Operation"))
