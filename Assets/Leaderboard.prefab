@@ -3845,7 +3845,7 @@ GameObject:
   - component: {fileID: 4536505565355838454}
   - component: {fileID: 4075005240172270265}
   m_Layer: 5
-  m_Name: Ladeboard
+  m_Name: Leaderboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

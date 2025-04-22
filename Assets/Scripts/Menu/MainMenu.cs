@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void Ladeboard()
+    public void Leaderboard()
     {
-        SceneManager.LoadScene("Ladeboard");
+        SceneManager.LoadScene("Leaderboard");
     }
 
     public void PlayGame()
