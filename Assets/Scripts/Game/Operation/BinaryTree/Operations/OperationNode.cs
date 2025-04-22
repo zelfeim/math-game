@@ -1,5 +1,4 @@
 using System;
-using Game.Operation.BinaryTree.Enums;
 using Game.Operation.BinaryTree.Interfaces;
 
 namespace Game.Operation.BinaryTree.Operations
@@ -15,8 +14,8 @@ namespace Game.Operation.BinaryTree.Operations
             _type = operationType;
         }
 
-        protected INode LeftNode { get; }
-        protected INode RightNode { get; }
+        public INode LeftNode { get; }
+        public INode RightNode { get; }
 
         public abstract override double Evaluate();
 

@@ -17,7 +17,6 @@ namespace Game.Operation
         private readonly Random _random = new();
         private float _spawnTimer = 0;
         private float _nextSpawnTime;
-        private float _timer;
 
         private void Start()
         {
@@ -70,49 +69,14 @@ namespace Game.Operation
             var controller = operationObject.GetComponent<OperationController>();
             
             var operation = RandomizeOperation();
-            var text = string.Empty;
-
-            var rhs = operation.Rhs.ToString("0.##");
-            switch (operation)
-            {
-                case AdditionOperation additionOperation:
-                    text = $"+{rhs}"; 
-                    break;
-                case SubtractionOperation subtractionOperation:
-                    text = $"-{rhs}";
-                    break;
-                case MultiplicationOperation multiplicationOperation:
-                    text = $"*{rhs}";
-                    break;
-                case DivisionOperation divisionOperation:
-                    text = $"/{rhs}";
-                    break;
-                case ComplexOperation complexOperation:
-                    text = complexOperation.BinaryTree.ToString();
-                    break;
-            }
-
+            
             controller.Operation = operation;
-            controller.text.SetText(text);
-            // controller.Setup(operation, text);
+            controller.text.SetText(operation.BinaryTree.ToString());
         }
 
-        private IOperation RandomizeOperation()
+        private static IOperation RandomizeOperation()
         {
-            var type = _random.Next(5, 5);
-
-            var value = _random.NextDouble() * 10;
-
-            return type switch
-            {
-                // TODO: Set colors/values inside the operations
-                1 => new AdditionOperation(value),
-                2 => new SubtractionOperation(value),
-                3 => new MultiplicationOperation(value),
-                4 => new DivisionOperation(value),
-                5 => new ComplexOperation(),
-                _ => null
-            };
+            return new Operation(2);
         }
     }
 }

@@ -13,7 +13,17 @@ namespace Game.Operation.BinaryTree
             RootNode = CreateRandomNode(depth);
         }
 
-        public INode RootNode { get; }
+        public BinaryTree(INode rootNode)
+        {
+            RootNode = rootNode;
+        }
+
+        private INode RootNode { get; }
+
+        public double Evaluate()
+        {
+            return RootNode.Evaluate();
+        }
 
         private static INode CreateRandomNode(int depth)
         {
@@ -23,12 +33,12 @@ namespace Game.Operation.BinaryTree
 
             var random = Random.Range(0, 100);
 
-            if (random < 70) return new NumberNode(10);
+            if (random < 30) return new NumberNode(Random.Range(0, 15));
 
             var leftNode = CreateRandomNode(depth - 1);
             var rightNode = CreateRandomNode(depth - 1);
             
-            return Random.Range(0, 3) switch
+            return Random.Range(0, 6) switch
             {
                 0 => new AdditionNode(leftNode, rightNode),
                 1 => new SubtractionNode(leftNode, rightNode),

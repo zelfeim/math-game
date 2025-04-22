@@ -1,4 +1,4 @@
-namespace Game.Operation.BinaryTree.Enums
+namespace Game.Operation.BinaryTree.Operations
 {
     public enum OperationType
     {
