@@ -12,7 +12,7 @@ public class LeaderboardEntry
     public int Score;
 }
 
-public class Ladeboard : MonoBehaviour
+public class Leaderboard : MonoBehaviour
 {
     [SerializeField] private List<TextMeshProUGUI> names;
     [SerializeField] private List<TextMeshProUGUI> scores;

@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField inputName;
     [SerializeField] private TextController textController;
-    [SerializeField] private Ladeboard leaderboard;
+    [SerializeField] private Leaderboard leaderboard;
 
     [Header("Settings")]
     [SerializeField] private int maxUsernameLength = 10;

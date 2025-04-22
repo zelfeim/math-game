@@ -2560,6 +2560,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4462378016109558608, guid: 4659a8c60bb3f8e419d9f6ccdaac7410, type: 3}
+      propertyPath: m_text
+      value: 'LEADERBOARD
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 4529233514158879349, guid: 4659a8c60bb3f8e419d9f6ccdaac7410, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
