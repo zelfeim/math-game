@@ -1,4 +1,5 @@
 using System;
+using Game.Misc;
 using Game.Operation;
 using Game.Operation.Interfaces;
 using UnityEngine;
@@ -45,16 +46,14 @@ namespace Game.Player
 
         void OnMoveLeft(InputValue value)
         {
-            if (_currentLane == Lane.Left) return;
-            _rb.MovePosition(new Vector2(_rb.position.x - JumpSpeed, _rb.position.y));
-            _currentLane--;
+            if (_currentLane != Lane.Left) _currentLane--;
+            _rb.MovePosition(new Vector2(_currentLane.GetXCoordinate(), _rb.position.y));
         }
 
         void OnMoveRight()
         {
-            if (_currentLane == Lane.Right) return;
-            _rb.MovePosition(new Vector2(_rb.position.x + JumpSpeed, _rb.position.y));
-            _currentLane++;
+            if (_currentLane != Lane.Right) _currentLane++;
+            _rb.MovePosition(new Vector2(_currentLane.GetXCoordinate(), _rb.position.y));
         }
 
         void OnJump()

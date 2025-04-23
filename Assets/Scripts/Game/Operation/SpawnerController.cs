@@ -1,7 +1,8 @@
+using System;
+using Game.Misc;
 using Game.Operation.BinaryTree;
 using Game.Operation.Interfaces;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Game.Operation
 {
@@ -15,7 +16,6 @@ namespace Game.Operation
         private const float MinSpawnInterval = 0.5f;
         private const float MaxSpawnInterval = 2f;
         
-        private readonly Random _random = new();
         private float _spawnTimer = 0;
         private float _nextSpawnTime;
 
@@ -40,12 +40,12 @@ namespace Game.Operation
 
         private float GetNextSpawnTime()
         {
-            return (float)(_random.NextDouble() * (MaxSpawnInterval - MinSpawnInterval) + MinSpawnInterval);
+            return UnityEngine.Random.value * (MaxSpawnInterval - MinSpawnInterval) + MinSpawnInterval;
         }
 
         private void SpawnRandomObject()
         {
-            if (_random.NextDouble() > OperationChance)
+            if (UnityEngine.Random.value > OperationChance)
             {
                 SpawnOperation();
             }
@@ -62,12 +62,13 @@ namespace Game.Operation
 
         private void SpawnOperation()
         {
-            var lane = _random.Next(-1, 2);
-                
-            var operationObject = Instantiate(operationPrefab, new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
+            var lanes = Enum.GetValues(typeof(Lane));
+            var lane = (Lane)lanes.GetValue(UnityEngine.Random.Range(0, lanes.Length));
+            
+            var operationObject = Instantiate(operationPrefab, new Vector3(lane.GetXCoordinate(), spawnerLocation.position.y, 0), Quaternion.identity);
 
             // TODO: Better performance?
-            var controller = operationObject.GetComponent<OperationController>();
+            var controller = operationObject.GetComponentInChildren<OperationController>();
             
             var operation = CreateRandomOperation();
             
@@ -79,7 +80,7 @@ namespace Game.Operation
         
         private static IOperation CreateRandomOperation()
         {
-            var operationTree = Factory.CreateTree(3);
+            var operationTree = Factory.CreateTree();
             
             return new Operation(operationTree);
         }

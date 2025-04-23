@@ -1,20 +1,21 @@
 using System;
 using Game.Operation.BinaryTree.Interfaces;
-using Game.Operation.BinaryTree.Operations;
-using Game.Operation.BinaryTree.Operators;
-using Game.Operation.Interfaces;
+using Random = UnityEngine.Random;
 
 namespace Game.Operation.BinaryTree
 {
     public class BinaryTreeFactory
     {
+        // TODO: Get from difficulty configuration
+        private const float NumberChance = 0.2f;
+        private const int MinValue = 0;
+        private const int MaxValue = 25;
+        private const int Depth = 3;
+
         private INode CreateNode(int depth)
         {
-            if (depth <= 0)
+            if (depth <= 0 || Random.value < NumberChance)
                 return CreateNumberNode();
-
-            var random = UnityEngine.Random.Range(0, 100);
-            if (random < 30) return CreateNumberNode();
 
             var leftNode = CreateNode(depth - 1);
             var rightNode = CreateNode(depth - 1);
@@ -22,16 +23,15 @@ namespace Game.Operation.BinaryTree
             return CreateRandomNode(leftNode, rightNode);
         }
 
-        public BinaryTree CreateTree(int depth)
+        public BinaryTree CreateTree()
         {
-            var rootNode = CreateNode(depth); 
+            var rootNode = CreateNode(Depth);
             return new BinaryTree(rootNode);
         }
 
         private INode CreateNumberNode()
         {
-            // TODO Get values configuration
-            var value = UnityEngine.Random.Range(0, 101);
+            var value = Random.Range(MinValue, MaxValue + 1);
             return NodeFactory.CreateNumberNode(value);
         }
 
@@ -39,9 +39,7 @@ namespace Game.Operation.BinaryTree
         {
             // Dumb logic, we retry creating a random node until it's valid
             while (true)
-            {
-                // TODO Get ranges from configuration
-                switch (UnityEngine.Random.Range(0, 7))
+                switch (Random.Range(0, 7))
                 {
                     case 0:
                         return NodeFactory.CreateAdditionNode(leftNode, rightNode);
@@ -74,7 +72,7 @@ namespace Game.Operation.BinaryTree
                         }
                         catch (ArgumentException)
                         {
-                           continue; 
+                            continue;
                         }
                     case 6:
                         try
@@ -88,7 +86,6 @@ namespace Game.Operation.BinaryTree
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Game.Operation.BinaryTree
             }
             catch (Exception e)
             {
-                // It SHOULD not happen, TODO some way to handle such cases
+                // It SHOULD not happen
                 Debug.Log(e);
                 return 0;
             }
