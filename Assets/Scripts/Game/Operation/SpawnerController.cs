@@ -1,3 +1,4 @@
+using Game.Operation.BinaryTree;
 using Game.Operation.Interfaces;
 using UnityEngine;
 using Random = System.Random;
@@ -46,7 +47,7 @@ namespace Game.Operation
         {
             if (_random.NextDouble() > OperationChance)
             {
-                SpawnOperations();
+                SpawnOperation();
             }
             else
             {
@@ -59,7 +60,7 @@ namespace Game.Operation
             // TODO: spawn obstacle
         }
 
-        private void SpawnOperations()
+        private void SpawnOperation()
         {
             var lane = _random.Next(-1, 2);
                 
@@ -68,15 +69,19 @@ namespace Game.Operation
             // TODO: Better performance?
             var controller = operationObject.GetComponent<OperationController>();
             
-            var operation = RandomizeOperation();
+            var operation = CreateRandomOperation();
             
             controller.Operation = operation;
             controller.text.SetText(operation.BinaryTree.ToString());
         }
 
-        private static IOperation RandomizeOperation()
+        private static readonly BinaryTreeFactory Factory = new();
+        
+        private static IOperation CreateRandomOperation()
         {
-            return new Operation(2);
+            var operationTree = Factory.CreateTree(3);
+            
+            return new Operation(operationTree);
         }
     }
 }

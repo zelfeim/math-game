@@ -5,9 +5,9 @@ namespace Game.Operation
 {
     public class Operation : IOperation
     {
-        public Operation(int depth)
+        public Operation(BinaryTree.BinaryTree binaryTree)
         {
-            BinaryTree = new BinaryTree.BinaryTree(depth);
+            BinaryTree = binaryTree;
         }
 
         public BinaryTree.BinaryTree BinaryTree { get; }

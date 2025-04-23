@@ -1,3 +1,4 @@
+using System;
 using Game.Operation.BinaryTree.Interfaces;
 
 namespace Game.Operation.BinaryTree.Operations
@@ -10,7 +11,12 @@ namespace Game.Operation.BinaryTree.Operations
 
         public override double Evaluate()
         {
-            return LeftNode.Evaluate() / RightNode.Evaluate();
+            var rightNodeValue = RightNode.Evaluate(); 
+            if (rightNodeValue == 0) throw new Exception("Division by zero");
+            
+            var leftNodeValue = LeftNode.Evaluate();
+            
+            return leftNodeValue / rightNodeValue;
         }
     }
 }

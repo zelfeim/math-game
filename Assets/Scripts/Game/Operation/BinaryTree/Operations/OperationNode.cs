@@ -9,13 +9,13 @@ namespace Game.Operation.BinaryTree.Operations
 
         protected OperationNode(INode leftNode, INode rightNode, OperationType operationType)
         {
-            LeftNode = leftNode;
-            RightNode = rightNode;
+            LeftNode = leftNode ?? throw new ArgumentNullException(nameof(leftNode));
+            RightNode = rightNode ?? throw new ArgumentNullException(nameof(rightNode));
             _type = operationType;
         }
 
-        public INode LeftNode { get; }
-        public INode RightNode { get; }
+        protected INode LeftNode { get; }
+        protected INode RightNode { get; }
 
         public abstract override double Evaluate();
 
@@ -25,8 +25,8 @@ namespace Game.Operation.BinaryTree.Operations
             {
                 OperationType.Addition => $"({LeftNode} + {RightNode})",
                 OperationType.Subtraction => $"({LeftNode} - {RightNode})",
-                OperationType.Multiplication => $@"{LeftNode} × {RightNode}",
-                OperationType.Division => $@"{LeftNode} ÷ {RightNode}",
+                OperationType.Multiplication => $@"({LeftNode} * {RightNode})",
+                OperationType.Division => $@"({LeftNode} / {RightNode})",
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

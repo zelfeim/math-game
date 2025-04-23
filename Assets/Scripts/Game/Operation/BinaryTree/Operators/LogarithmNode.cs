@@ -11,7 +11,10 @@ namespace Game.Operation.BinaryTree.Operators
 
         public override double Evaluate()
         {
-            return Math.Log(ChildNode.Evaluate(), 2);
+            var value = ChildNode.Evaluate();
+            if (value < 0) throw new Exception("Logarithm of negative number");
+            
+            return Math.Log(value);
         }
     }
 }

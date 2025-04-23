@@ -36,7 +36,6 @@ namespace Game.Operation
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log("Operation destroyed!");
             Destroy(gameObject);
         }
     }

@@ -12,7 +12,10 @@ namespace Game.Operation.BinaryTree.Operators
         
         public override double Evaluate()
         {
-            return Math.Sqrt(ChildNode.Evaluate());
+            var value = ChildNode.Evaluate();
+            if (value < 0) throw new Exception("Square root of negative number");
+            
+            return Math.Sqrt(value);
         }
     }
 }
