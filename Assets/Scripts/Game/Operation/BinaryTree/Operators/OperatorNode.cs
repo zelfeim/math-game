@@ -1,5 +1,6 @@
 using System;
 using Game.Operation.BinaryTree.Interfaces;
+using Game.Operation.BinaryTree.Operations;
 
 namespace Game.Operation.BinaryTree.Operators
 {
@@ -19,13 +20,32 @@ namespace Game.Operation.BinaryTree.Operators
 
         public sealed override string ToString()
         {
-            return _type switch
+            // TODO Get from main menu selection, just like difficulty
+            var notationType = NotationType.Postfix;
+
+            if (notationType == NotationType.Infix)
             {
-                OperatorType.Exponentiation => $@"({ChildNode})^2",
-                OperatorType.Root => $@"√({ChildNode})",
-                OperatorType.Logarithm => $@"log2({ChildNode})",
-                _ => throw new ArgumentOutOfRangeException()
-            };
+                return _type switch
+                {
+                    OperatorType.Exponentiation => $"({ChildNode})^2",
+                    OperatorType.Root => $@"√({ChildNode})",
+                    OperatorType.Logarithm => $"log2({ChildNode})",
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
+
+            if (notationType == NotationType.Postfix)
+            {
+                return _type switch
+                {
+                    OperatorType.Exponentiation => $"{ChildNode} ^2",
+                    OperatorType.Root => $"{ChildNode} sqrt",
+                    OperatorType.Logarithm => $"{ChildNode} log",
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
+
+            throw new ArgumentOutOfRangeException();
         }
     }
 }

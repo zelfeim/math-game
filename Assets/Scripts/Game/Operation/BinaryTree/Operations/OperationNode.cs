@@ -21,14 +21,33 @@ namespace Game.Operation.BinaryTree.Operations
 
         public sealed override string ToString()
         {
-            return _type switch
+            // TODO Get from main menu selection, just like difficulty
+            var notationType = NotationType.Postfix;
+            
+            if (notationType == NotationType.Infix)
             {
-                OperationType.Addition => $"({LeftNode} + {RightNode})",
-                OperationType.Subtraction => $"({LeftNode} - {RightNode})",
-                OperationType.Multiplication => $@"({LeftNode} * {RightNode})",
-                OperationType.Division => $@"({LeftNode} / {RightNode})",
-                _ => throw new ArgumentOutOfRangeException()
-            };
+                return _type switch
+                {
+                    OperationType.Addition => $"({LeftNode} + {RightNode})",
+                    OperationType.Subtraction => $"({LeftNode} - {RightNode})",
+                    OperationType.Multiplication => $@"({LeftNode} * {RightNode})",
+                    OperationType.Division => $@"({LeftNode} / {RightNode})",
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            } 
+            if (notationType == NotationType.Postfix)
+            {
+                return _type switch
+                {
+                    OperationType.Addition => $"{LeftNode} {RightNode} +",
+                    OperationType.Subtraction => $"{LeftNode} {RightNode} -",
+                    OperationType.Multiplication => $"{LeftNode} {RightNode} *",
+                    OperationType.Division => $"{LeftNode} {RightNode} /",
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
+            
+            throw new ArgumentOutOfRangeException();
         }
     }
 }
