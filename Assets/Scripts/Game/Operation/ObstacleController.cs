@@ -1,6 +1,4 @@
-﻿using Game.Operation.Interfaces;
-using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Game.Operation
@@ -19,12 +17,6 @@ namespace Game.Operation
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<Collider2D>();
             text = GetComponent<TextMeshPro>();
-            DifficultyManager.OnDifficultyChanged += UpddateDifficulty;
-        }
-
-        private void UpddateDifficulty(Difficulty difficulty)
-        {
-            _speed = DifficultyManager.Config.levels[(int)difficulty].speed;
         }
 
         void Update()

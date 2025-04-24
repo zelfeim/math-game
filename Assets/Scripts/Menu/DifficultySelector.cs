@@ -1,36 +1,44 @@
+using System;
+using Game.Difficulty;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro; 
 
-public class DifficultySelector : MonoBehaviour
+namespace Menu
 {
-    public TMP_Text difficultyText; 
-    private string[] difficulties = { "Easy", "Medium", "Hard" };
-    private int currentIndex = 0;
-
-    public static string SelectedDifficulty { get; private set; }
-
-    void Start()
+    public class DifficultySelector : MonoBehaviour
     {
-        UpdateDifficulty();
-    }
+        public TMP_Text difficultyText; 
+        private string[] difficulties = { "Easy", "Medium", "Hard" };
+        private int currentIndex = 0;
 
-    public void NextDifficulty()
-    {
-        currentIndex = (currentIndex + 1) % difficulties.Length;
-        UpdateDifficulty();
-    }
+        public static string SelectedDifficulty { get; private set; }
 
-    public void PreviousDifficulty()
-    {
-        currentIndex = (currentIndex - 1 + difficulties.Length) % difficulties.Length;
-        UpdateDifficulty();
-    }
+        void Start()
+        {
+            UpdateDifficulty();
+        }
 
-    private void UpdateDifficulty()
-    {
-        SelectedDifficulty = difficulties[currentIndex];
-        difficultyText.text = SelectedDifficulty;
-        Debug.Log("Difficulty set to: " + SelectedDifficulty);
+        public void NextDifficulty()
+        {
+            currentIndex = (currentIndex + 1) % difficulties.Length;
+            UpdateDifficulty();
+        }
+
+        public void PreviousDifficulty()
+        {
+            currentIndex = (currentIndex - 1 + difficulties.Length) % difficulties.Length;
+            UpdateDifficulty();
+        }
+
+        private void UpdateDifficulty()
+        {
+            SelectedDifficulty = difficulties[currentIndex];
+            difficultyText.text = SelectedDifficulty;
+            
+            // TODO: Don't parse from string!
+            DifficultyManager.CurrentDifficulty = Enum.Parse<Difficulty>(SelectedDifficulty);
+            
+            Debug.Log("Difficulty set to: " + SelectedDifficulty);
+        }
     }
 }
