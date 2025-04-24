@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public static class DifficultyManager
 {
+    public delegate void DifficultyChanged(Difficulty difficulty);
+    public static event DifficultyChanged OnDifficultyChanged;
+
     private static LevelDataConfiguration _config;
 
     public static LevelDataConfiguration Config
@@ -34,5 +38,10 @@ public static class DifficultyManager
             return;
         }
         _config = JsonUtility.FromJson<LevelDataConfiguration>("{\"levels\":" + jsonFile.text + "}");
+    }
+
+    public static void SetDifficultyLevel(Difficulty difficulty)
+    {
+        OnDifficultyChanged?.Invoke(difficulty);
     }
 }

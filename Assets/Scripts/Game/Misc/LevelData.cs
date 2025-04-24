@@ -18,7 +18,7 @@ public class LevelData
     public int operationComplexity;
     public float obstacleToOperationRatio;
     public string elementDensity;
-    public string speed;
+    public float speed;
 }
 
 [System.Serializable]
