@@ -22,7 +22,7 @@ namespace Game.Misc
 
         private void UpdateLives(int lives)
         {
-            _text.SetText(lives + " lives left");        
+            _text.SetText(lives.ToString());        
         }
     }
 }
