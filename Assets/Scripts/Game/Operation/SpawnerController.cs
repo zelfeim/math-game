@@ -8,7 +8,7 @@ namespace Game.Operation
 {
     public class SpawnerController : MonoBehaviour
     {
-        public GameObject operationPrefab;
+        public GameObject[] operationPrefab;
         public Transform spawnerLocation;
 
         // TODO get from game difficulty config
@@ -57,7 +57,12 @@ namespace Game.Operation
 
         private void SpawnObstacle()
         {
-            // TODO: spawn obstacle
+            var lanes = Enum.GetValues(typeof(Lane));
+            var lane = (Lane)lanes.GetValue(UnityEngine.Random.Range(0, lanes.Length));
+            
+            var operationObject = Instantiate(operationPrefab[1], new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
+
+            operationObject.GetComponentInChildren<ObstacleController>();
         }
 
         private void SpawnOperation()
@@ -65,7 +70,7 @@ namespace Game.Operation
             var lanes = Enum.GetValues(typeof(Lane));
             var lane = (Lane)lanes.GetValue(UnityEngine.Random.Range(0, lanes.Length));
             
-            var operationObject = Instantiate(operationPrefab, new Vector3(lane.GetXCoordinate(), spawnerLocation.position.y, 0), Quaternion.identity);
+            var operationObject = Instantiate(operationPrefab[0], new Vector3(lane.GetXCoordinate(), spawnerLocation.position.y, 0), Quaternion.identity);
 
             // TODO: Better performance?
             var controller = operationObject.GetComponentInChildren<OperationController>();

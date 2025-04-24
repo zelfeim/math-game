@@ -2,11 +2,12 @@
 using TMPro;
 using UnityEngine.Events;
 using Game.Misc;
+using UnityEngine.Serialization;
 
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField inputName;
-    [SerializeField] private TextController textController;
+    [FormerlySerializedAs("textController")] [SerializeField] private ScoreTextController scoreTextController;
     [SerializeField] private Leaderboard leaderboard;
 
     [Header("Settings")]
@@ -22,7 +23,7 @@ public class ScoreManager : MonoBehaviour
         if (username.Length > maxUsernameLength)
             username = username.Substring(0, maxUsernameLength);
 
-        int score = textController.GetLastDisplayedScore();
+        int score = scoreTextController.GetLastDisplayedScore();
 
         submitScoreEvent.Invoke(username, score);
         leaderboard.SetLeaderboardEntry(username, score);
