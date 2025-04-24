@@ -60,7 +60,7 @@ namespace Game.Operation
             var lanes = Enum.GetValues(typeof(Lane));
             var lane = (Lane)lanes.GetValue(UnityEngine.Random.Range(0, lanes.Length));
             
-            var operationObject = Instantiate(operationPrefab[1], new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
+            var operationObject = Instantiate(operationPrefab[1], new Vector3(lane.GetXCoordinate(), spawnerLocation.position.y, 0), Quaternion.identity);
 
             operationObject.GetComponentInChildren<ObstacleController>();
         }
