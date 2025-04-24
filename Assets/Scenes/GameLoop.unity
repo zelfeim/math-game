@@ -1022,7 +1022,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0877c59945140e4b19128a8cbbeaea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operationPrefab: {fileID: 1910608118588404070, guid: ed2f4565860ff6171855ff0e2f44b042, type: 3}
+  operationPrefab:
+  - {fileID: 1019825207131914867, guid: fb6089029fe25644ea50f94f27fe1759, type: 3}
+  - {fileID: 8328363312812890549, guid: bbfcb6ca0fd0b3a4f9f0e6ecd1b9141c, type: 3}
   spawnerLocation: {fileID: 712496946}
 --- !u!4 &712496946
 Transform:

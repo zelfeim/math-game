@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1487580311358681877
+--- !u!1001 &7572694715031349459
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -90,7 +90,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1910608118588404070, guid: ed2f4565860ff6171855ff0e2f44b042, type: 3}
       propertyPath: m_Name
-      value: Operation
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910608118588404070, guid: ed2f4565860ff6171855ff0e2f44b042, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138309605940572807, guid: ed2f4565860ff6171855ff0e2f44b042, type: 3}
+      propertyPath: m_text
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138309605940572807, guid: ed2f4565860ff6171855ff0e2f44b042, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278243071
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
