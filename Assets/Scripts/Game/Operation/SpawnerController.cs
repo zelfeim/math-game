@@ -58,11 +58,6 @@ namespace Game.Operation
 
         private void SpawnObstacle()
         {
-            if (operationPrefab[1] == null)
-            {
-                return;
-            }
-            
             var lane = _random.Next(-1, 2);
             var operationObject = Instantiate(operationPrefab[1], new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
 
@@ -71,11 +66,6 @@ namespace Game.Operation
 
         private void SpawnOperations()
         {
-            if (operationPrefab[0] == null)
-            {
-                return;
-            }
-            
             var lane = _random.Next(-1, 2);
             var operationObject = Instantiate(operationPrefab[0], new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
 
