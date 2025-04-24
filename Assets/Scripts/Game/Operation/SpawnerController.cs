@@ -1,8 +1,8 @@
 using System;
+using Game.Misc;
+using Game.Operation.BinaryTree;
 using Game.Operation.Interfaces;
-using Unity.VisualScripting;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Game.Operation
 {
@@ -16,7 +16,6 @@ namespace Game.Operation
         private const float MinSpawnInterval = 0.5f;
         private const float MaxSpawnInterval = 2f;
         
-        private readonly Random _random = new();
         private float _spawnTimer = 0;
         private float _nextSpawnTime;
 
@@ -41,14 +40,14 @@ namespace Game.Operation
 
         private float GetNextSpawnTime()
         {
-            return (float)(_random.NextDouble() * (MaxSpawnInterval - MinSpawnInterval) + MinSpawnInterval);
+            return UnityEngine.Random.value * (MaxSpawnInterval - MinSpawnInterval) + MinSpawnInterval;
         }
 
         private void SpawnRandomObject()
         {
-            if (_random.NextDouble() > OperationChance)
+            if (UnityEngine.Random.value > OperationChance)
             {
-                SpawnOperations();
+                SpawnOperation();
             }
             else
             {
@@ -58,60 +57,37 @@ namespace Game.Operation
 
         private void SpawnObstacle()
         {
-            var lane = _random.Next(-1, 2);
-            var operationObject = Instantiate(operationPrefab[1], new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
+            var lanes = Enum.GetValues(typeof(Lane));
+            var lane = (Lane)lanes.GetValue(UnityEngine.Random.Range(0, lanes.Length));
+            
+            var operationObject = Instantiate(operationPrefab[1], new Vector3(lane.GetXCoordinate(), spawnerLocation.position.y, 0), Quaternion.identity);
 
-            operationObject.GetComponent<ObstacleController>();
+            operationObject.GetComponentInChildren<ObstacleController>();
         }
 
-        private void SpawnOperations()
+        private void SpawnOperation()
         {
-            var lane = _random.Next(-1, 2);
-            var operationObject = Instantiate(operationPrefab[0], new Vector3(lane * 5.0f, spawnerLocation.position.y, 0), Quaternion.identity);
+            var lanes = Enum.GetValues(typeof(Lane));
+            var lane = (Lane)lanes.GetValue(UnityEngine.Random.Range(0, lanes.Length));
+            
+            var operationObject = Instantiate(operationPrefab[0], new Vector3(lane.GetXCoordinate(), spawnerLocation.position.y, 0), Quaternion.identity);
 
             // TODO: Better performance?
-            var controller = operationObject.GetComponent<OperationController>();
+            var controller = operationObject.GetComponentInChildren<OperationController>();
             
-            var operation = RandomizeOperation();
-            var text = string.Empty;
-
-            var rhs = operation.Rhs.ToString("0.##");
-            switch (operation)
-            {
-                case AdditionOperation additionOperation:
-                    text = $"+{rhs}"; 
-                    break;
-                case SubtractionOperation subtractionOperation:
-                    text = $"-{rhs}";
-                    break;
-                case MultiplicationOperation multiplicationOperation:
-                    text = $"*{rhs}";
-                    break;
-                case DivisionOperation divisionOperation:
-                    text = $"/{rhs}";
-                    break;
-            }
+            var operation = CreateRandomOperation();
             
             controller.Operation = operation;
-            controller.text.SetText(text);
-            // controller.Setup(operation, text);
+            controller.text.SetText(operation.BinaryTree.ToString());
         }
 
-        private IOperation RandomizeOperation()
+        private static readonly BinaryTreeFactory Factory = new();
+        
+        private static IOperation CreateRandomOperation()
         {
-            var type = _random.Next(1, 4);
+            var operationTree = Factory.CreateTree();
             
-            var value = _random.NextDouble() * 10;
-            
-            return type switch
-            {
-                // TODO: Set colors/values inside the operations
-                1 => new AdditionOperation(value),
-                2 => new SubtractionOperation(value),
-                3 => new MultiplicationOperation(value),
-                4 => new DivisionOperation(value),
-                _ => null
-            };
+            return new Operation(operationTree);
         }
     }
 }
