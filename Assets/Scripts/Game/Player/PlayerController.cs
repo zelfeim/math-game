@@ -2,6 +2,7 @@ using System;
 using Game.Misc;
 using Game.Operation;
 using Game.Operation.Interfaces;
+using Menu;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,11 @@ namespace Game.Player
         public static event Action<double> OnScoreChange;
         public static event Action<int> OnLivesChange;
 
+        public PauseMenu PauseMenu;
+
+        public GameObject explosionPrefab;
+
+
         private Rigidbody2D _rb;
         private Collider2D _col;
         private PlayerInput _playerInput;
@@ -31,14 +37,14 @@ namespace Game.Player
             _rb = GetComponent<Rigidbody2D>();
             _playerInput = GetComponent<PlayerInput>();
             _col = GetComponent<Collider2D>();
-            
+
             _rb.gravityScale = 0;
             _targetPosition = _rb.position;
 
             OnScoreChange?.Invoke(_score);
             OnLivesChange?.Invoke(_lives);
         }
-        
+
         private void FixedUpdate()
         {
             if (!_isMoving) return;
@@ -47,7 +53,7 @@ namespace Game.Player
             _rb.MovePosition(newPosition);
 
             if (Vector2.Distance(_rb.position, _targetPosition) >= 0.1f) return;
-            
+
             _rb.MovePosition(_targetPosition);
             _isMoving = false;
         }
@@ -63,7 +69,7 @@ namespace Game.Player
         private void OnMoveRight()
         {
             if (_isMoving || _currentLane == Lane.Right) return;
-            
+
             _currentLane++;
             UpdateTargetPosition();
         }
@@ -76,11 +82,13 @@ namespace Game.Player
 
         private void GetStunned()
         {
-            if (--_lives == 0)
+            _lives--;
+            if (_lives < 1)
             {
-                Debug.Log("Game Over");
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                gameObject.SetActive(false);
+                PauseMenu.gameOver();
             }
-
             OnLivesChange?.Invoke(_lives);
         }
 
