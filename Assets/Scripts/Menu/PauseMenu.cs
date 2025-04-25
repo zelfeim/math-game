@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Game.Player;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace Menu
 {
@@ -7,6 +9,9 @@ namespace Menu
     {
         [SerializeField] private GameObject pauseMenuPanel; // Panel pauzy
         [SerializeField] private string mainMenuSceneName = "MainMenu"; // Nazwa sceny głównego menu
+        [SerializeField] private GameObject gameOverUI; // UI końca gry
+
+
 
         private bool isPaused = false; // Flaga pauzy
 
@@ -17,12 +22,17 @@ namespace Menu
             {
                 pauseMenuPanel.SetActive(false);
             }
-       
+
+            if (gameOverUI != null)
+            {
+                gameOverUI.SetActive(false);
+            }
+
         }
 
         void Update()
         {
-            // Obsługa klawisza Escape do pauzowania
+            if (gameOverUI != null && gameOverUI.activeSelf) return;
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 TogglePause();
@@ -41,9 +51,12 @@ namespace Menu
             }
         }
 
+
+
+
         public void PauseGame()
         {
-            isPaused = true; // Ustaw flagę pauzy na true
+            isPaused = true;
             Time.timeScale = 0f; // Zatrzymanie czasu gry
             if (pauseMenuPanel != null)
             {
@@ -53,7 +66,7 @@ namespace Menu
 
         public void ResumeGame()
         {
-            isPaused = false; // Ustaw flagę pauzy na false
+            isPaused = false;
             Time.timeScale = 1f; // Wznowienie czasu gry
             if (pauseMenuPanel != null)
             {
@@ -63,8 +76,29 @@ namespace Menu
 
         public void LoadMainMenu()
         {
-            Time.timeScale = 1f; // Reset czasu gry przed przejściem do menu głównego
-            SceneManager.LoadScene(mainMenuSceneName); // Załaduj scenę głównego menu
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
+
+        public void Restart()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void gameOver()
+        {
+            StartCoroutine(ShowGameOverWithDelay());
+        }
+
+        private IEnumerator ShowGameOverWithDelay()
+        {
+            yield return new WaitForSeconds(1f);
+            if (gameOverUI != null)
+            {
+                gameOverUI.SetActive(true);
+            }
+            Time.timeScale = 0f;
         }
 
         public void QuitGame()
