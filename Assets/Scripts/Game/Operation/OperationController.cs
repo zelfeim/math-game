@@ -38,7 +38,15 @@ namespace Game.Operation
         private void OnCollisionEnter2D(Collision2D other)
         {
             var contact = other.GetContact(0);
-            Instantiate(collectOperationEffectPrefab, contact.point, Quaternion.identity);
+            var prefab = Instantiate(collectOperationEffectPrefab, contact.point, Quaternion.identity);
+            var ps = prefab.GetComponent<ParticleSystem>();
+
+            if (Operation.Evaluate(0) < 0 && ps != null)
+            {
+                var main = ps.main;
+                main.startColor = Color.red;
+            }
+            
             Destroy(gameObject);
         }
     }

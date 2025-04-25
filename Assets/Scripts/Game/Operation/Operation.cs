@@ -11,10 +11,13 @@ namespace Game.Operation
         }
 
         public BinaryTree.BinaryTree BinaryTree { get; }
+        private double? _rhsValue;
 
         public double Evaluate(double lhs)
         {
-            return lhs + BinaryTree.Evaluate();
+            _rhsValue ??= BinaryTree.Evaluate();
+            
+            return lhs + _rhsValue.Value;
         }
     }
 }
