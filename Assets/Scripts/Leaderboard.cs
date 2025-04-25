@@ -29,7 +29,7 @@ public class Leaderboard : MonoBehaviour
 
     public void GetLeaderboard()
     {
-        // Sortowanie malejąco po wyniku (działa także dla wartości ujemnych)
+        
         _entries = _entries.OrderByDescending(e => e.Score).ToList();
 
         int loopLength = Mathf.Min(_entries.Count, names.Count);
