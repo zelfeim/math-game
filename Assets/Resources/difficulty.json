@@ -1,0 +1,130 @@
+{
+  "easy": {
+    "valueRange": {
+      "min": -100,
+      "max": 100
+    },
+    "resultRange": {
+      "min": -200,
+      "max": 200
+    },
+    "operations": [
+      {
+        "type": "Addition",
+        "weight": "25"
+      },
+      {
+        "type": "Subtraction",
+        "weight": "25"
+      }
+    ],
+    "operationComplexity": 2,
+    "obstacleToOperationRatio": 0.25,
+    "elementDensity": "low",
+    "speed": "1.0"
+  },
+  "medium": {
+    "valueRange": {
+      "min": -100,
+      "max": 200
+    },
+    "resultRange": {
+      "min": -200,
+      "max": 400
+    },
+    "operations": [
+      {
+        "type": "Addition",
+        "weight": "25"
+      },
+      {
+        "type": "Subtraction",
+        "weight": "25"
+      },
+      {
+        "type": "Multiplication",
+        "weight": "25"
+      }
+    ],
+    "operationComplexity": 2,
+    "obstacleToOperationRatio": 0.33,
+    "elementDensity": "medium",
+    "speed": "2.0"
+  },
+  "hard": {
+    "valueRange": {
+      "min": 1,
+      "max": 500
+    },
+    "resultRange": {
+      "min": 0,
+      "max": 1000
+    },
+    "operations": [
+      {
+        "type": "Addition",
+        "weight": "25"
+      },
+      {
+        "type": "Subtraction",
+        "weight": "25"
+      },
+      {
+        "type": "Multiplication",
+        "weight": "25"
+      },
+      {
+        "type": "Division",
+        "weight": "25"
+      }
+    ],
+    "operationComplexity": 3,
+    "obstacleToOperationRatio": 0.5,
+    "elementDensity": "high",
+    "speed": "3.0"
+  },
+  "insane": {
+    "valueRange": {
+      "min": 1,
+      "max": 1000
+    },
+    "resultRange": {
+      "min": 0,
+      "max": 5000
+    },
+    "operations": [
+      {
+        "type": "Addition",
+        "weight": "20"
+      },
+      {
+        "type": "Subtraction",
+        "weight": "20"
+      },
+      {
+        "type": "Multiplication",
+        "weight": "20"
+      },
+      {
+        "type": "Division",
+        "weight": "20"
+      },
+      {
+        "type": "Exponentiation",
+        "weight": "20"
+      },
+      {
+        "type": "Root",
+        "weight": "20"
+      },
+      {
+        "type": "Logarithm",
+        "weight": "20"
+      }
+    ],
+    "operationComplexity": 4,
+    "obstacleToOperationRatio": 0.7,
+    "elementDensity": "high",
+    "speed": "4.0"
+  }
+}

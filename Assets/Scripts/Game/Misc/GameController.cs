@@ -1,25 +1,27 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public enum GameState
+namespace Game.Misc
 {
-    InMainMenu,
-    Playing,
-    Paused
-}
-
-public class GameController : MonoBehaviour
-{
-    void Start()
+    public enum GameState
     {
+        InMainMenu,
+        Playing,
+        Paused
+    }
+
+    public class GameController : MonoBehaviour
+    {
+        void Start()
+        {
         
-    }
+        }
 
-    public static void StartGame()
-    {
-    }
+        public static void StartGame()
+        {
+        }
 
-    private void SetState(GameState state)
-    {
+        private void SetState(GameState state)
+        {
+        }
     }
 }
