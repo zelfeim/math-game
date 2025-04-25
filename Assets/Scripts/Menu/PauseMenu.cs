@@ -22,11 +22,11 @@ namespace Menu
             {
                 pauseMenuPanel.SetActive(false);
             }
-
+       
             if (gameOverUI != null)
             {
                 gameOverUI.SetActive(false);
-            }
+        }
 
         }
 

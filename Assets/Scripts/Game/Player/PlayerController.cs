@@ -89,6 +89,7 @@ namespace Game.Player
                 gameObject.SetActive(false); 
                 PauseMenu.gameOver();
             }
+
             OnLivesChange?.Invoke(_lives);
         }
 
