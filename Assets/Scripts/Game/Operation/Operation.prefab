@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Operation
       objectReference: {fileID: 0}
+    - target: {fileID: 4018174548119918406, guid: ed2f4565860ff6171855ff0e2f44b042, type: 3}
+      propertyPath: collectOperationEffectPrefab
+      value: 
+      objectReference: {fileID: 8580238152970428945, guid: 1fcdc60aadc5c1545b9c877ff7387b44, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

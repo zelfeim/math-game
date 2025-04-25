@@ -6,6 +6,7 @@ namespace Game.Operation
 {
     public class OperationController : MonoBehaviour
     {
+        public GameObject collectOperationEffectPrefab;
         public TextMeshPro text;
         private readonly float speed = -2.0f;
         private Collider2D _col;
@@ -36,6 +37,8 @@ namespace Game.Operation
 
         private void OnCollisionEnter2D(Collision2D other)
         {
+            var contact = other.GetContact(0);
+            Instantiate(collectOperationEffectPrefab, contact.point, Quaternion.identity);
             Destroy(gameObject);
         }
     }
