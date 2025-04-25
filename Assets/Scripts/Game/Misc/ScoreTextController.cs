@@ -8,7 +8,7 @@ namespace Game.Misc
     public class ScoreTextController : MonoBehaviour
     {
         private TextMeshProUGUI _text;
-        private double _lastScore = 0;
+        private double _lastScore;
 
         private void Start()
         {

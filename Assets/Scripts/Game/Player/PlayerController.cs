@@ -35,7 +35,7 @@ namespace Game.Player
             _rb.gravityScale = 0;
             _targetPosition = _rb.position;
 
-            // Inicjalizacja liczby żyć
+            OnScoreChange?.Invoke(_score);
             OnLivesChange?.Invoke(_lives);
         }
         
