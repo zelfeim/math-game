@@ -21,7 +21,10 @@
     ],
     "operationComplexity": 2,
     "obstacleToOperationRatio": 0.25,
-    "elementDensity": "low",
+    "elementDensityRange": {
+      "min": 3,
+      "max": 4
+    },
     "speed": "1.0"
   },
   "medium": {
@@ -50,7 +53,10 @@
     ],
     "operationComplexity": 2,
     "obstacleToOperationRatio": 0.33,
-    "elementDensity": "medium",
+    "elementDensityRange": {
+      "min": 2,
+      "max": 3
+    },
     "speed": "2.0"
   },
   "hard": {
@@ -83,7 +89,10 @@
     ],
     "operationComplexity": 3,
     "obstacleToOperationRatio": 0.5,
-    "elementDensity": "high",
+    "elementDensityRange": {
+      "min": 1,
+      "max": 2
+    },
     "speed": "3.0"
   },
   "insane": {
@@ -127,7 +136,10 @@
     ],
     "operationComplexity": 4,
     "obstacleToOperationRatio": 0.7,
-    "elementDensity": "high",
+    "elementDensityRange": {
+      "min": 1,
+      "max": 2
+    },
     "speed": "4.0"
   }
 }
