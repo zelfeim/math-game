@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 296604927}
   - component: {fileID: 296604926}
   - component: {fileID: 296604925}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Lives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 395923018}
   - component: {fileID: 395923017}
   - component: {fileID: 395923019}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1481,7 +1481,7 @@ GameObject:
   - component: {fileID: 860187691}
   - component: {fileID: 860187693}
   - component: {fileID: 860187692}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ScoreBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2530,7 +2530,7 @@ GameObject:
   - component: {fileID: 1395782489}
   - component: {fileID: 1395782491}
   - component: {fileID: 1395782490}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: LivesBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2768,7 +2768,7 @@ GameObject:
   - component: {fileID: 1611681985}
   - component: {fileID: 1611681987}
   - component: {fileID: 1611681986}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ScoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3146,7 +3146,7 @@ GameObject:
   - component: {fileID: 2073378130}
   - component: {fileID: 2073378132}
   - component: {fileID: 2073378131}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: LivesLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3389,9 +3389,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 1691100788}
+  - {fileID: 712496946}
   - {fileID: 643510692}
   - {fileID: 519420032}
-  - {fileID: 712496946}
   - {fileID: 7783941}
   - {fileID: 145039957}
   - {fileID: 898826068}
