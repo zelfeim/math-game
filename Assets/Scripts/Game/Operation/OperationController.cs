@@ -8,8 +8,9 @@ namespace Game.Operation
     {
         public GameObject collectOperationEffectPrefab;
         public TextMeshPro text;
-        private readonly float speed = -2.0f;
-        private Collider2D _col;
+        public SpriteRenderer textBackground;
+        
+        private readonly float _speed = -2.0f;
 
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
@@ -17,11 +18,24 @@ namespace Game.Operation
         // TODO: Private?
         public IOperation Operation;
 
+        public void SetOperationText(string newText)
+        {
+            text.SetText(newText);
+            SetTextBackgroundScale();
+        }
+
+        private void SetTextBackgroundScale()
+        {
+            var textWidth = text.preferredWidth;
+            var width = textWidth / 2.5 > textBackground.transform.localScale.x ? textWidth / 2.5 : textBackground.transform.localScale.x;
+            
+            textBackground.transform.localScale = new Vector3((float)width, textBackground.transform.localScale.y, 1);
+        }
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _col = GetComponent<Collider2D>();
             text = GetComponent<TextMeshPro>();
         }
 
@@ -32,7 +46,7 @@ namespace Game.Operation
 
         private void FixedUpdate()
         {
-            _rb.linearVelocityY = speed;
+            _rb.linearVelocityY = _speed;
         }
 
         private void OnCollisionEnter2D(Collision2D other)

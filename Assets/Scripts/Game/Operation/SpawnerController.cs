@@ -81,7 +81,7 @@ namespace Game.Operation
             var operation = CreateRandomOperation();
             
             controller.Operation = operation;
-            controller.text.SetText(operation.BinaryTree.ToString());
+            controller.SetOperationText(operation.BinaryTree.ToString());
         }
 
         private static readonly BinaryTreeFactory Factory = new();

@@ -1,4 +1,5 @@
 using System;
+using Game.Misc;
 using Game.Operation.BinaryTree.Interfaces;
 using Game.Operation.BinaryTree.Operations;
 
@@ -21,9 +22,7 @@ namespace Game.Operation.BinaryTree.Operators
         public sealed override string ToString()
         {
             // TODO Get from main menu selection, just like difficulty
-            var notationType = NotationType.Postfix;
-
-            if (notationType == NotationType.Infix)
+            if (SettingsManager.CurrentNotation == Notation.Infix)
             {
                 return _type switch
                 {
@@ -34,7 +33,7 @@ namespace Game.Operation.BinaryTree.Operators
                 };
             }
 
-            if (notationType == NotationType.Postfix)
+            if (SettingsManager.CurrentNotation == Notation.Postfix)
             {
                 return _type switch
                 {
