@@ -21,9 +21,6 @@ namespace Game.Player
         private Collider2D _col;
         private PlayerInput _playerInput;
 
-        private bool _isDucking;
-        private bool _isJumping;
-
         private Lane _currentLane = Lane.Middle;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,16 +51,6 @@ namespace Game.Player
         {
             if (_currentLane != Lane.Right) _currentLane++;
             _rb.MovePosition(new Vector2(_currentLane.GetXCoordinate(), _rb.position.y));
-        }
-
-        void OnJump()
-        {
-            _isJumping = true;
-        }
-
-        void OnDuck()
-        {
-            _isDucking = true;
         }
 
         private void GetStunned()
