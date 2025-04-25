@@ -1,5 +1,4 @@
-﻿using Game.Operation.Interfaces;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Game.Operation
@@ -19,7 +18,7 @@ namespace Game.Operation
             _col = GetComponent<Collider2D>();
             text = GetComponent<TextMeshPro>();
         }
-        
+
         void Update()
         {
         }

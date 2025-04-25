@@ -1,11 +1,12 @@
 using System;
 using Game.Operation.BinaryTree.Interfaces;
+using Game.Operation.BinaryTree.Operations;
 
 namespace Game.Operation.BinaryTree.Operators
 {
     public class ExponentiationNode : OperatorNode
     {
-        public ExponentiationNode(INode childNode) : base(childNode, OperatorType.Exponentiation)
+        public ExponentiationNode(INode childNode) : base(childNode, OperationType.Exponentiation)
         {
         }
 

@@ -1,21 +1,23 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace Menu
 {
-    public void Leaderboard()
+    public class MainMenu : MonoBehaviour
     {
-        SceneManager.LoadScene("Leaderboard");
-    }
+        public void Leaderboard()
+        {
+            SceneManager.LoadScene("Leaderboard");
+        }
 
-    public void PlayGame()
-    {
-        SceneManager.LoadScene("GameLoop");
-    }
+        public void PlayGame()
+        {
+            SceneManager.LoadScene("GameLoop");
+        }
 
-    public void QuitGame()
-    {
-        Application.Quit();
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }

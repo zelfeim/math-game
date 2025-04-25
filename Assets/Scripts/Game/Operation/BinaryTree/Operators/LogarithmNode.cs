@@ -5,7 +5,7 @@ namespace Game.Operation.BinaryTree.Operators
 {
     public class LogarithmNode : OperatorNode
     {
-        public LogarithmNode(INode childNode) : base(childNode, OperatorType.Logarithm)
+        public LogarithmNode(INode childNode) : base(childNode, OperationType.Logarithm)
         {
         }
 

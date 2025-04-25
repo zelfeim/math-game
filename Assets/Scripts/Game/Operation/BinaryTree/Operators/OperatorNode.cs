@@ -6,9 +6,9 @@ namespace Game.Operation.BinaryTree.Operators
 {
     public abstract class OperatorNode : NodeAbstract
     {
-        private readonly OperatorType _type;
+        private readonly OperationType _type;
 
-        protected OperatorNode(INode childNode, OperatorType operatorType)
+        protected OperatorNode(INode childNode, OperationType operatorType)
         {
             ChildNode = childNode ?? throw new ArgumentNullException(nameof(childNode));
             _type = operatorType;
@@ -27,9 +27,9 @@ namespace Game.Operation.BinaryTree.Operators
             {
                 return _type switch
                 {
-                    OperatorType.Exponentiation => $"({ChildNode})^2",
-                    OperatorType.Root => $@"√({ChildNode})",
-                    OperatorType.Logarithm => $"log2({ChildNode})",
+                    OperationType.Exponentiation => $"({ChildNode})^2",
+                    OperationType.Root => $@"√({ChildNode})",
+                    OperationType.Logarithm => $"log2({ChildNode})",
                     _ => throw new ArgumentOutOfRangeException()
                 };
             }
@@ -38,9 +38,9 @@ namespace Game.Operation.BinaryTree.Operators
             {
                 return _type switch
                 {
-                    OperatorType.Exponentiation => $"{ChildNode} ^2",
-                    OperatorType.Root => $"{ChildNode} sqrt",
-                    OperatorType.Logarithm => $"{ChildNode} log",
+                    OperationType.Exponentiation => $"{ChildNode} ^2",
+                    OperationType.Root => $"{ChildNode} sqrt",
+                    OperationType.Logarithm => $"{ChildNode} log",
                     _ => throw new ArgumentOutOfRangeException()
                 };
             }
