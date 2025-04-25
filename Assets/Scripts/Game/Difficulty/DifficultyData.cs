@@ -18,7 +18,7 @@ namespace Game.Difficulty
         public List<OperationData> operations;
         public int operationComplexity;
         public float obstacleToOperationRatio;
-        public string elementDensity;
+        public Range elementDensityRange;
         public float speed;
     }
 

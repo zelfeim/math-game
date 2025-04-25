@@ -1,8 +1,10 @@
 using System;
+using Game.Difficulty;
 using Game.Misc;
 using Game.Operation.BinaryTree;
 using Game.Operation.Interfaces;
 using UnityEngine;
+using Range = Game.Difficulty.Range;
 
 namespace Game.Operation
 {
@@ -10,17 +12,18 @@ namespace Game.Operation
     {
         public GameObject[] operationPrefab;
         public Transform spawnerLocation;
-
-        // TODO get from game difficulty config
-        private const float OperationChance = 0.5f;
-        private const float MinSpawnInterval = 0.5f;
-        private const float MaxSpawnInterval = 2f;
+        
+        private float _obstacleToOperationRatio;
+        private Range _elementDensityRange;
         
         private float _spawnTimer = 0;
         private float _nextSpawnTime;
 
         private void Start()
         {
+            _obstacleToOperationRatio = DifficultyManager.GetObstacleToOperationRatio();
+            _elementDensityRange = DifficultyManager.GetElementDensityRange();
+            
             _nextSpawnTime = GetNextSpawnTime();
         }
         
@@ -40,12 +43,12 @@ namespace Game.Operation
 
         private float GetNextSpawnTime()
         {
-            return UnityEngine.Random.value * (MaxSpawnInterval - MinSpawnInterval) + MinSpawnInterval;
+            return UnityEngine.Random.value * (_elementDensityRange.max - _elementDensityRange.min) + _elementDensityRange.min;
         }
 
         private void SpawnRandomObject()
         {
-            if (UnityEngine.Random.value > OperationChance)
+            if (UnityEngine.Random.value > _obstacleToOperationRatio)
             {
                 SpawnOperation();
             }

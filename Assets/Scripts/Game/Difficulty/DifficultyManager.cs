@@ -50,9 +50,9 @@ namespace Game.Difficulty
             return GetCurrentDifficultyData().obstacleToOperationRatio;
         }
 
-        public static string GetElementDensity()
+        public static Range GetElementDensityRange()
         {
-            return GetCurrentDifficultyData().elementDensity;
+            return GetCurrentDifficultyData().elementDensityRange;
         }
 
         public static float GetObjectSpeed()
