@@ -1,4 +1,5 @@
 using System;
+using Game.Difficulty;
 using Game.Operation.BinaryTree.Interfaces;
 using Random = UnityEngine.Random;
 
@@ -6,21 +7,19 @@ namespace Game.Operation.BinaryTree
 {
     public class BinaryTreeFactory
     {
-        // TODO: Get from difficulty configuration
-        private const float NumberChance = 0.2f;
-        private const int MinValue = 0;
-        private const int MaxValue = 25;
-        private const int Depth = 3;
+        private static float NumberChance => DifficultyManager.GetNumberChance();
+        private static int MinValue => DifficultyManager.GetValueRange().min;
+        private static int MaxValue => DifficultyManager.GetValueRange().max;
+        private static int Depth => DifficultyManager.GetOperationComplexity();
+        private static int AdditionWeight => DifficultyManager.GetOperation(OperationType.Addition)?.weight ?? 0;
+        private static int SubtractionWeight => DifficultyManager.GetOperation(OperationType.Subtraction)?.weight ?? 0;
+        private static int MultiplicationWeight => DifficultyManager.GetOperation(OperationType.Multiplication)?.weight ?? 0;
+        private static int DivisionWeight => DifficultyManager.GetOperation(OperationType.Division)?.weight ?? 0;
+        private static int ExponentiationWeight => DifficultyManager.GetOperation(OperationType.Exponentiation)?.weight ?? 0;
+        private static int SquareRootWeight => DifficultyManager.GetOperation(OperationType.Root)?.weight ?? 0;
+        private static int LogarithmWeight => DifficultyManager.GetOperation(OperationType.Logarithm)?.weight ?? 0;
 
-        private const int AdditionWeight = 25;
-        private const int SubtractionWeight = 25;
-        private const int MultiplicationWeight = 15;
-        private const int DivisionWeight = 15;
-        private const int ExponentiationWeight = 10;
-        private const int SquareRootWeight = 5;
-        private const int LogarithmWeight = 5;
-
-        private INode CreateNode(int depth)
+        private static INode CreateNode(int depth)
         {
             if (depth <= 0 || Random.value < NumberChance)
                 return CreateNumberNode();
@@ -31,13 +30,13 @@ namespace Game.Operation.BinaryTree
             return CreateRandomNode(leftNode, rightNode);
         }
 
-        public BinaryTree CreateTree()
+        public static BinaryTree CreateTree()
         {
             var rootNode = CreateNode(Depth);
             return new BinaryTree(rootNode);
         }
 
-        private INode CreateNumberNode()
+        private static INode CreateNumberNode()
         {
             var value = Random.Range(MinValue, MaxValue + 1);
             return NodeFactory.CreateNumberNode(value);
@@ -52,21 +51,24 @@ namespace Game.Operation.BinaryTree
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         private static INode CreateRandomNode(INode leftNode, INode rightNode)
         {
+            var weightSum = AdditionWeight + SubtractionWeight + MultiplicationWeight + DivisionWeight +
+                            ExponentiationWeight + SquareRootWeight + LogarithmWeight;
+            
             while (true)
             {
-                var chance = Random.Range(0, 101);
-                var percentage = 0;
+                var chance = Random.Range(0, weightSum);
+                var currentPercentage = 0;
 
-                if (chance < (percentage += AdditionWeight)) 
+                if (chance < (currentPercentage += AdditionWeight))
                     return NodeFactory.CreateAdditionNode(leftNode, rightNode);
 
-                if (chance < (percentage += SubtractionWeight))
+                if (chance < (currentPercentage += SubtractionWeight))
                     return NodeFactory.CreateSubtractionNode(leftNode, rightNode);
 
-                if (chance < (percentage += MultiplicationWeight))
+                if (chance < (currentPercentage += MultiplicationWeight))
                     return NodeFactory.CreateMultiplicationNode(leftNode, rightNode);
 
-                if (chance < (percentage += DivisionWeight))
+                if (chance < (currentPercentage += DivisionWeight))
                     try
                     {
                         return NodeFactory.CreateDivisionNode(leftNode, rightNode);
@@ -76,7 +78,7 @@ namespace Game.Operation.BinaryTree
                         continue;
                     }
 
-                if (chance < (percentage += ExponentiationWeight))
+                if (chance < (currentPercentage += ExponentiationWeight))
                     try
                     {
                         return NodeFactory.CreateExponentiationNode(leftNode);
@@ -86,7 +88,7 @@ namespace Game.Operation.BinaryTree
                         continue;
                     }
 
-                if (chance < (percentage += SquareRootWeight))
+                if (chance < (currentPercentage += SquareRootWeight))
                     try
                     {
                         return NodeFactory.CreateSquareRootNode(leftNode);
@@ -96,7 +98,7 @@ namespace Game.Operation.BinaryTree
                         continue;
                     }
 
-                if (chance < (percentage += LogarithmWeight))
+                if (chance < currentPercentage + LogarithmWeight)
                     try
                     {
                         return NodeFactory.CreateLogarithmNode(leftNode);

@@ -85,7 +85,7 @@ namespace Game.Operation
         
         private static IOperation CreateRandomOperation()
         {
-            var operationTree = Factory.CreateTree();
+            var operationTree = BinaryTreeFactory.CreateTree();
             
             return new Operation(operationTree);
         }

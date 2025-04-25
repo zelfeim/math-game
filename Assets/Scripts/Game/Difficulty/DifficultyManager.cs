@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Game.Operation.BinaryTree;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -23,6 +25,11 @@ namespace Game.Difficulty
                 return _config;
             }
         }
+        
+        public static float GetNumberChance()
+        {
+            return GetCurrentDifficultyData().numberChance;
+        }
 
         public static Range GetValueRange()
         {
@@ -38,6 +45,11 @@ namespace Game.Difficulty
         public static List<OperationData> GetOperations()
         {
             return GetCurrentDifficultyData().operations; 
+        }
+
+        public static OperationData GetOperation(OperationType type)
+        {
+            return GetCurrentDifficultyData().operations.FirstOrDefault(x => x.type == type);
         }
 
         public static int GetOperationComplexity()

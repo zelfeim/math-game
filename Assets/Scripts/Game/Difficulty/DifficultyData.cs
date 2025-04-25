@@ -13,6 +13,7 @@ namespace Game.Difficulty
     [System.Serializable]
     public class DifficultyData
     {
+        public float numberChance;
         public Range valueRange;
         public Range resultRange;
         public List<OperationData> operations;
