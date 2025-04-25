@@ -1228,6 +1228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuPanel: {fileID: 0}
   mainMenuSceneName: MainMenu
+  gameOverUI: {fileID: 0}
 --- !u!1 &845600392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,8 +1400,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.50600004, y: 0.77800006}
   m_AnchorMax: {x: 0.558, y: 0.84630525}
-  m_AnchoredPosition: {x: -48, y: -143.01926}
-  m_SizeDelta: {x: 1843.0278, y: 1355.5577}
+  m_AnchoredPosition: {x: -61.444, y: -510.01312}
+  m_SizeDelta: {x: 2389.3, y: 1771.9739}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286172381
 MonoBehaviour:
