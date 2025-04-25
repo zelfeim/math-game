@@ -9,7 +9,7 @@ namespace Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private const float JumpSpeed = 5.0f;
+        private const float HorizontalMoveSpeed = 15.0f;
 
         private int _lives = 3;
         private double _score = 0.0d;
@@ -21,49 +21,57 @@ namespace Game.Player
         private Collider2D _col;
         private PlayerInput _playerInput;
 
-        private bool _isDucking;
-        private bool _isJumping;
-
         private Lane _currentLane = Lane.Middle;
+        private bool _isMoving;
+        private Vector2 _targetPosition;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
             _playerInput = GetComponent<PlayerInput>();
             _col = GetComponent<Collider2D>();
-
+            
             _rb.gravityScale = 0;
+            _targetPosition = _rb.position;
 
             // Inicjalizacja liczby żyć
             OnLivesChange?.Invoke(_lives);
         }
-
-        // Update is called once per frame
-        void Update()
+        
+        private void FixedUpdate()
         {
+            if (!_isMoving) return;
+
+            var newPosition = Vector2.MoveTowards(_rb.position, _targetPosition, HorizontalMoveSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(newPosition);
+
+            if (Vector2.Distance(_rb.position, _targetPosition) >= 0.1f) return;
+            
+            _rb.MovePosition(_targetPosition);
+            _isMoving = false;
         }
 
-        void OnMoveLeft(InputValue value)
+        private void OnMoveLeft(InputValue value)
         {
-            if (_currentLane != Lane.Left) _currentLane--;
-            _rb.MovePosition(new Vector2(_currentLane.GetXCoordinate(), _rb.position.y));
+            if (_isMoving || _currentLane == Lane.Left) return;
+
+            _currentLane--;
+            UpdateTargetPosition();
         }
 
-        void OnMoveRight()
+        private void OnMoveRight()
         {
-            if (_currentLane != Lane.Right) _currentLane++;
-            _rb.MovePosition(new Vector2(_currentLane.GetXCoordinate(), _rb.position.y));
+            if (_isMoving || _currentLane == Lane.Right) return;
+            
+            _currentLane++;
+            UpdateTargetPosition();
         }
 
-        void OnJump()
+        private void UpdateTargetPosition()
         {
-            _isJumping = true;
-        }
-
-        void OnDuck()
-        {
-            _isDucking = true;
+            _targetPosition = new Vector2(_currentLane.GetXCoordinate(), _rb.position.y);
+            _isMoving = true;
         }
 
         private void GetStunned()
